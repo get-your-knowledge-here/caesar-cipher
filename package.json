@@ -1,0 +1,28 @@
+{
+  "name": "@gykh/caesar-cipher",
+  "version": "0.0.1",
+  "description": "Used to encrypt/decrypt using simple caesar cipher",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/get-your-knowledge-here/caesar-cipher.git"
+  },
+  "keywords": [
+    "caesar",
+    "caesar-cipher",
+    "cipher",
+    "shift",
+    "shifts",
+    "encrypt",
+    "decrypt"
+  ],
+  "author": "Get your knowledge here",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/get-your-knowledge-here/caesar-cipher/issues"
+  },
+  "homepage": "https://github.com/get-your-knowledge-here/caesar-cipher#readme"
+}
