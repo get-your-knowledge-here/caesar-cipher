@@ -13,16 +13,27 @@
   "keywords": [
     "caesar",
     "caesar-cipher",
+    "caesar-encrypt",
+    "caesar-decrypt",
     "cipher",
     "shift",
     "shifts",
     "encrypt",
-    "decrypt"
+    "decrypt",
+    "encryption",
+    "decryption"
   ],
-  "author": "Get your knowledge here",
+  "author": {
+    "name": "Sylvester Das",
+    "email": "sylvester.das@gmail.com",
+    "url": "https://wwwo.sylvesterdas.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/get-your-knowledge-here/caesar-cipher/issues"
   },
-  "homepage": "https://github.com/get-your-knowledge-here/caesar-cipher#readme"
+  "homepage": "https://github.com/get-your-knowledge-here/caesar-cipher#readme",
+  "devDependencies": {
+    "mocha": "^9.1.3"
+  }
 }
