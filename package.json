@@ -1,6 +1,6 @@
 {
   "name": "@gykh/caesar-cipher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Used to encrypt/decrypt using simple caesar cipher",
   "main": "index.js",
   "scripts": {
