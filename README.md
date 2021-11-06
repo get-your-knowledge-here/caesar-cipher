@@ -47,7 +47,7 @@ const decrypted = decrypt(encrypted, 3);
 console.log(buffer == decrypted); // true
 ```
 
-Encrypt and decrypt streams
+Encrypt and decrypt streams (Use this in case of input being large data / file)
 
 ```js
 const { EncryptTransform, DecryptTransform } = require("@gykh/caesar-cipher");
@@ -86,7 +86,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ### .decryptString(input, key)
 
@@ -100,7 +100,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ### .encrypt(input, key)
 
@@ -114,7 +114,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ### .decrypt(input, key)
 
@@ -128,7 +128,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ### new EncryptTransform(key)
 
@@ -137,7 +137,7 @@ key should be a number between 1-26
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ### new DecryptTransform(key)
 
@@ -146,7 +146,7 @@ key should be a number between 1-26
 Type: `number`<br/>
 Required
 
-key should be a number between 1-26
+key should be a number between 0-25
 
 ## Understand Caesar Cipher
 
