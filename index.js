@@ -1,6 +1,10 @@
 "use strict";
 
-const { CeaserCipherTransform } = require("./cipher");
+const {
+  CaesarCipherTransform,
+  cipherBuffer,
+  cipherString,
+} = require("./cipher");
 const {
   ensureValidForBuffer,
   ensureValidForString,
@@ -17,11 +21,7 @@ const {
 function encryptString(str, key) {
   ensureValidForString(str, key);
 
-  return str
-    .split("")
-    .map((s) => s.charCodeAt(0) + (key % 26))
-    .map((v) => String.fromCharCode(v))
-    .join("");
+  return cipherString(str, key);
 }
 
 /**
@@ -34,11 +34,7 @@ function encryptString(str, key) {
 function decryptString(str, key) {
   ensureValidForString(str, key);
 
-  return str
-    .split("")
-    .map((s) => s.charCodeAt(0) - (key % 26))
-    .map((v) => String.fromCharCode(v))
-    .join("");
+  return cipherString(str, -key);
 }
 
 /**
@@ -50,7 +46,7 @@ function decryptString(str, key) {
  */
 function encrypt(buffer, key) {
   ensureValidForBuffer(buffer, key);
-  return buffer.map((byte) => byte + (key % 26));
+  return cipherBuffer(buffer, key);
 }
 
 /**
@@ -62,10 +58,10 @@ function encrypt(buffer, key) {
  */
 function decrypt(buffer, key) {
   ensureValidForBuffer(buffer, key);
-  return buffer.map((byte) => byte - (key % 26));
+  return cipherBuffer(buffer, -key);
 }
 
-class EncryptTransform extends CeaserCipherTransform {
+class EncryptTransform extends CaesarCipherTransform {
   /**
    * Transform stream for encryption using Caesar Cipher
    *
@@ -78,7 +74,7 @@ class EncryptTransform extends CeaserCipherTransform {
   }
 }
 
-class DecryptTransform extends CeaserCipherTransform {
+class DecryptTransform extends CaesarCipherTransform {
   /**
    * Transform stream for decryption using Caesar Cipher
    *

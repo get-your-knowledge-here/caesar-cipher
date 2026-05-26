@@ -4,70 +4,59 @@
 
 ## Install
 
+```sh
+pnpm add @gykh/caesar-cipher
 ```
-$ npm install --save @gykh/caesar-cipher
-```
-### or
 
-
-```
-$ npm i -S @gykh/caesar-cipher
-```
+Requires Node.js 18 or newer.
 
 ## Usage
 
-Encrypt and decrypt string
+Version 3 implements a classic Caesar cipher for ASCII letters. `A-Z` and
+`a-z` shift with wraparound, while punctuation, whitespace, digits, and
+non-letter characters are preserved.
+
+Encrypt and decrypt strings:
 
 ```js
 const { encryptString, decryptString } = require("@gykh/caesar-cipher");
 
-...
+const str = "Hello, World! 123";
 
 const encrypted = encryptString(str, 3);
+console.log(encrypted); // Khoor, Zruog! 123
 
 const decrypted = decryptString(encrypted, 3);
-
 console.log(str === decrypted); // true
 ```
 
-Encrypt and decrypt buffer
+Encrypt and decrypt buffers:
 
 ```js
 const { encrypt, decrypt } = require("@gykh/caesar-cipher");
-const fs = require('fs');
-const { promisify } = require('util');
-const readFile = promisify(fs.readFile);
+const { readFile } = require("fs/promises");
 
-...
+const buffer = await readFile(inputFile);
 
-const encrypted = encrypt(await readFile(inputFile), 3);
+const encrypted = encrypt(buffer, 3);
 
 const decrypted = decrypt(encrypted, 3);
-
-console.log(buffer == decrypted); // true
+console.log(buffer.equals(decrypted)); // true
 ```
 
-Encrypt and decrypt streams (Use this in case of input being large data / file)
+Encrypt and decrypt streams. Use this for large data or files:
 
 ```js
 const { EncryptTransform, DecryptTransform } = require("@gykh/caesar-cipher");
-const fs = require('fs'); 
+const fs = require("fs");
+const { pipeline } = require("stream/promises");
 
-...
-
-const readStream = fs.createReadStream(inputFile);
-const writeStream = fs.createWriteStream(outputFile);
-
-const encryptTransform = new EncryptTransform(3);
-const decryptTransform = new DecryptTransform(3);
-
-const stream = readStream
-    .pipe(encryptTransform)
-    .pipe(decryptTransform)
-    .pipe(writeStream)
-
-stream.on("error", () => /* do something */);
-stream.on("finish", () => /* do something */);
+await pipeline(
+  fs.createReadStream(inputFile),
+  new EncryptTransform(3),
+  new DecryptTransform(3),
+  fs.createWriteStream(outputFile)
+);
 ```
 
 ## API
@@ -86,7 +75,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ### .decryptString(input, key)
 
@@ -100,7 +89,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ### .encrypt(input, key)
 
@@ -114,7 +103,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ### .decrypt(input, key)
 
@@ -128,7 +117,7 @@ Required
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ### new EncryptTransform(key)
 
@@ -137,7 +126,7 @@ key should be a number between 0-25
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ### new DecryptTransform(key)
 
@@ -146,7 +135,7 @@ key should be a number between 0-25
 Type: `number`<br/>
 Required
 
-key should be a number between 0-25
+key should be an integer between 0-25
 
 ## Understand Caesar Cipher
 
