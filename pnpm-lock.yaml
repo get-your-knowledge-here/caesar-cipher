@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  mocha>js-yaml@<=4.1.1: '>=4.2.0'
+
 importers:
 
   .: {}
