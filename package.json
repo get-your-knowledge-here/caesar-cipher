@@ -1,7 +1,7 @@
 {
   "name": "@gykh/caesar-cipher",
   "version": "3.0.1",
-  "description": "Used to encrypt/decrypt using simple caesar cipher",
+  "description": "⚡ Fast, zero-dependency Caesar cipher in Node.js supporting Strings, Buffers, Streams, ROT13, & Cracking.",
   "main": "index.js",
   "types": "./index.d.ts",
   "exports": {
@@ -20,7 +20,6 @@
     "LICENSE",
     "CHANGELOG.md"
   ],
-
   "scripts": {
     "test": "node --test"
   },
@@ -38,15 +37,17 @@
   "keywords": [
     "caesar",
     "caesar-cipher",
-    "caesar-encrypt",
-    "caesar-decrypt",
+    "caesar-shift",
+    "rot13",
     "cipher",
-    "shift",
-    "shifts",
+    "cryptography",
     "encrypt",
     "decrypt",
     "encryption",
-    "decryption"
+    "decryption",
+    "streams",
+    "typescript",
+    "zero-dependencies"
   ],
   "author": {
     "name": "Sylvester Das",
@@ -57,5 +58,5 @@
   "bugs": {
     "url": "https://github.com/get-your-knowledge-here/caesar-cipher/issues"
   },
-  "homepage": "https://github.com/get-your-knowledge-here/caesar-cipher#readme"
+  "homepage": "https://get-your-knowledge-here.github.io/caesar-cipher/"
 }
