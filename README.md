@@ -164,7 +164,8 @@ A Node.js `stream.Transform` subclass for decrypting stream chunks.
 
 ## Interactive Demo
 
-You can try the interactive web demo directly in your browser by opening [`docs/index.html`](./docs/index.html) or visiting the GitHub Pages deployment.
+You can try the interactive web demo directly in your browser by opening [`docs/index.html`](./docs/index.html).
+
 
 ---
 
