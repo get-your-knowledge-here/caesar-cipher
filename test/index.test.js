@@ -82,6 +82,46 @@ describe("@gykh/caesar-cipher", function () {
       assert.deepEqual(fs.readFileSync(inputFile), fs.readFileSync(outputFile));
     });
 
+    it("should correctly perform ROT13 encoding and decoding", function () {
+      const { rot13 } = require("..");
+      const text = "Hello, World! 123";
+      const encoded = rot13(text);
+      assert.strictEqual(encoded, "Uryyb, Jbeyq! 123");
+      assert.strictEqual(rot13(encoded), text);
+    });
+
+    it("should crack ciphertext and find original plaintext", function () {
+      const { crack, bruteForce, encryptString } = require("..");
+      const original = "Attack at dawn!";
+      const ciphertext = encryptString(original, 7);
+
+      const permutations = crack(ciphertext);
+      assert.strictEqual(permutations.length, 25);
+
+      const match = permutations.find((p) => p.shift === 7);
+      assert.ok(match);
+      assert.strictEqual(match.text, original);
+
+      const bfPermutations = bruteForce(ciphertext);
+      assert.deepStrictEqual(bfPermutations, permutations);
+    });
+
+    it("should import cleanly from ESM module", async function () {
+      const esm = await import("../index.mjs");
+      assert.strictEqual(typeof esm.encryptString, "function");
+      assert.strictEqual(typeof esm.decryptString, "function");
+      assert.strictEqual(typeof esm.rot13, "function");
+      assert.strictEqual(typeof esm.crack, "function");
+      assert.strictEqual(typeof esm.bruteForce, "function");
+      assert.strictEqual(typeof esm.encrypt, "function");
+      assert.strictEqual(typeof esm.decrypt, "function");
+      assert.strictEqual(typeof esm.EncryptTransform, "function");
+      assert.strictEqual(typeof esm.DecryptTransform, "function");
+
+      assert.strictEqual(esm.encryptString("abc", 1), "bcd");
+    });
+
+
     after(() => {
       if (fs.existsSync(outputFile)) {
         fs.unlinkSync(outputFile);

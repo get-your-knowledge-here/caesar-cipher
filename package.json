@@ -3,14 +3,24 @@
   "version": "3.0.1",
   "description": "Used to encrypt/decrypt using simple caesar cipher",
   "main": "index.js",
-  "exports": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./index.mjs",
+    "require": "./index.js",
+    "default": "./index.js"
+  },
   "files": [
     "cipher.js",
     "index.js",
+    "index.mjs",
+    "index.d.ts",
     "validate.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
+
   "scripts": {
     "test": "node --test"
   },

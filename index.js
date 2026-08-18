@@ -4,10 +4,12 @@ const {
   CaesarCipherTransform,
   cipherBuffer,
   cipherString,
+  crackString,
 } = require("./cipher");
 const {
   ensureValidForBuffer,
   ensureValidForString,
+  ensureValidStringOnly,
   ensureValidKey,
 } = require("./validate");
 
@@ -36,6 +38,38 @@ function decryptString(str, key) {
 
   return cipherString(str, -key);
 }
+
+/**
+ * Perform ROT13 cipher on a string (shift by 13)
+ *
+ * @param {string} str
+ * @returns string
+ */
+function rot13(str) {
+  ensureValidStringOnly(str);
+
+  return cipherString(str, 13);
+}
+
+/**
+ * Brute-force crack all possible Caesar cipher shifts (1 through 25)
+ *
+ * @param {string} str Encrypted string
+ * @returns {Array<{shift: number, text: string}>}
+ */
+function crack(str) {
+  ensureValidStringOnly(str);
+
+  return crackString(str);
+}
+
+/**
+ * Alias for crack(str)
+ *
+ * @param {string} str Encrypted string
+ * @returns {Array<{shift: number, text: string}>}
+ */
+const bruteForce = crack;
 
 /**
  * Encrypt a buffer array using Caesar Cipher
@@ -92,6 +126,10 @@ module.exports = {
   decrypt,
   encryptString,
   decryptString,
+  rot13,
+  crack,
+  bruteForce,
   EncryptTransform,
   DecryptTransform,
 };
+

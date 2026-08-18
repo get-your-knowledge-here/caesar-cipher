@@ -65,8 +65,31 @@ function ensureValidForBuffer(buffer, key) {
   ensureValidKey(key);
 }
 
+/**
+ * Validation for string input without key (rot13, crack, bruteForce)
+ *
+ * @param {String} str String input value
+ */
+function ensureValidStringOnly(str) {
+  if (!str) {
+    throw new Error("Str is required");
+  }
+
+  if (typeof str !== "string" || str.length === 0) {
+    throw new Error("Str is invalid");
+  }
+
+  if (str.length > 1000) {
+    throw new Error(
+      "Input too large, use EncryptTransform / DecryptTransform instead"
+    );
+  }
+}
+
 module.exports = {
   ensureValidKey,
   ensureValidForString,
   ensureValidForBuffer,
+  ensureValidStringOnly,
 };
+

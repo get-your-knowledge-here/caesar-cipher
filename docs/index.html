@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caesar Cipher Playground — @gykh/caesar-cipher</title>
+  <meta name="description" content="Interactive Caesar Cipher playground and cryptanalysis tool for @gykh/caesar-cipher." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-elevated: #21262d;
+      --border: #30363d;
+      --border-focus: #58a6ff;
+      --text: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --accent-subtle: rgba(56, 139, 253, 0.15);
+      --success: #3fb950;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --transition: all 0.18s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #1f6feb, #58a6ff);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .logo-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1080px;
+      width: 100%;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .playground-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      align-items: center;
+      background: var(--surface-elevated);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .control-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .shift-badge {
+      background: var(--accent-subtle);
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background: var(--surface-elevated);
+      border-color: var(--border-focus);
+    }
+
+    .btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .alphabet-mapping {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      color: var(--text-muted);
+    }
+
+    .alphabet-mapping span.plain {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .alphabet-mapping span.cipher {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .editors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .editors-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editor-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .pane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.925rem;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      min-height: 160px;
+      resize: vertical;
+      outline: none;
+      transition: var(--transition);
+      line-height: 1.6;
+    }
+
+    textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .copy-btn:hover {
+      text-decoration: underline;
+    }
+
+    .cracker-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .cracker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+    }
+
+    .crack-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .crack-card:hover {
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .crack-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .crack-card-text {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text);
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--success);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-group">
+        <div class="logo-icon">C</div>
+        <div>
+          <h1 class="logo-title">Caesar Cipher Playground</h1>
+          <p class="logo-subtitle">Powered by @gykh/caesar-cipher</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="https://github.com/get-your-knowledge-here/caesar-cipher" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="nav-link" href="https://www.npmjs.com/package/@gykh/caesar-cipher" target="_blank" rel="noopener">npm ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="playground-card">
+      <div class="controls-grid">
+        <div class="control-group">
+          <div class="control-label">
+            <span>Shift Key</span>
+            <span class="shift-badge" id="shiftDisplay">Shift: 3</span>
+          </div>
+          <div class="slider-wrapper">
+            <input type="range" id="shiftRange" min="0" max="25" value="3" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">Mode & Presets</div>
+          <div class="btn-group">
+            <button class="btn active" id="btnEncrypt">Encrypt</button>
+            <button class="btn" id="btnDecrypt">Decrypt</button>
+            <button class="btn" id="btnRot13">ROT13 (13)</button>
+            <button class="btn" id="btnReset">Reset (0)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="alphabet-mapping" id="alphabetMapping">
+        Plain:  <span class="plain">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span><br />
+        Shift:  <span class="cipher">D E F G H I J K L M N O P Q R S T U V W X Y Z A B C</span>
+      </div>
+
+      <div class="editors-grid">
+        <div class="editor-pane">
+          <div class="pane-header">
+            <span id="inputLabel">Plaintext Input</span>
+            <span id="inputLength">17 chars</span>
+          </div>
+          <textarea id="inputText" placeholder="Type or paste text to encrypt/decrypt...">Hello, World! 123</textarea>
+        </div>
+
+        <div class="editor-pane">
+          <div class="pane-header">
+            <span id="outputLabel">Ciphertext Output</span>
+            <button class="copy-btn" id="btnCopyOutput">Copy Output</button>
+          </div>
+          <textarea id="outputText" readonly placeholder="Output will appear here..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="cracker-section">
+      <div>
+        <h2 class="section-title">Cryptanalysis Cracker</h2>
+        <p class="section-desc">Instantly view all 25 possible Caesar shift permutations for the text above. Click any card to copy.</p>
+      </div>
+
+      <div class="cracker-grid" id="crackerGrid">
+        <!-- Permutation cards populated via JS -->
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <footer>
+    <p>MIT License © 2021-2026 <a href="https://github.com/get-your-knowledge-here/caesar-cipher" target="_blank" rel="noopener">get-your-knowledge-here</a> • Created by <a href="https://www.sylvesterdas.com" target="_blank" rel="noopener">Sylvester Das</a></p>
+  </footer>
+
+  <script>
+    // Core Caesar Cipher Logic
+    const UPPER_A = 65, UPPER_Z = 90, LOWER_A = 97, LOWER_Z = 122, ALPHABET_LEN = 26;
+
+    function shiftCode(code, key) {
+      const shift = ((key % ALPHABET_LEN) + ALPHABET_LEN) % ALPHABET_LEN;
+      if (code >= UPPER_A && code <= UPPER_Z) {
+        return UPPER_A + ((code - UPPER_A + shift) % ALPHABET_LEN);
+      }
+      if (code >= LOWER_A && code <= LOWER_Z) {
+        return LOWER_A + ((code - LOWER_A + shift) % ALPHABET_LEN);
+      }
+      return code;
+    }
+
+    function cipherString(str, key) {
+      let result = '';
+      for (let i = 0; i < str.length; i++) {
+        result += String.fromCharCode(shiftCode(str.charCodeAt(i), key));
+      }
+      return result;
+    }
+
+    // UI Elements
+    const shiftRange = document.getElementById('shiftRange');
+    const shiftDisplay = document.getElementById('shiftDisplay');
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const inputLabel = document.getElementById('inputLabel');
+    const outputLabel = document.getElementById('outputLabel');
+    const inputLength = document.getElementById('inputLength');
+    const alphabetMapping = document.getElementById('alphabetMapping');
+    const crackerGrid = document.getElementById('crackerGrid');
+    const toast = document.getElementById('toast');
+
+    const btnEncrypt = document.getElementById('btnEncrypt');
+    const btnDecrypt = document.getElementById('btnDecrypt');
+    const btnRot13 = document.getElementById('btnRot13');
+    const btnReset = document.getElementById('btnReset');
+    const btnCopyOutput = document.getElementById('btnCopyOutput');
+
+    let mode = 'encrypt'; // 'encrypt' or 'decrypt'
+
+    function updateAlphabetPreview(key) {
+      const effectiveShift = mode === 'encrypt' ? key : -key;
+      const plainLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      let shiftedLetters = '';
+      for (let i = 0; i < 26; i++) {
+        shiftedLetters += String.fromCharCode(shiftCode(plainLetters.charCodeAt(i), effectiveShift));
+      }
+      alphabetMapping.innerHTML = `
+        Plain:  <span class="plain">${plainLetters.split('').join(' ')}</span><br />
+        Shift:  <span class="cipher">${shiftedLetters.split('').join(' ')}</span>
+      `;
+    }
+
+    function updateConversion() {
+      const key = parseInt(shiftRange.value, 10);
+      shiftDisplay.textContent = `Shift: ${key}`;
+      const text = inputText.value;
+      inputLength.textContent = `${text.length} chars`;
+
+      const effectiveKey = mode === 'encrypt' ? key : -key;
+      outputText.value = cipherString(text, effectiveKey);
+
+      updateAlphabetPreview(key);
+      updateCrackerGrid(text);
+    }
+
+    function updateCrackerGrid(text) {
+      crackerGrid.innerHTML = '';
+      if (!text.trim()) {
+        crackerGrid.innerHTML = '<div style="color: var(--text-muted); font-size: 0.85rem;">Enter text above to see permutations.</div>';
+        return;
+      }
+
+      for (let s = 1; s < 26; s++) {
+        const cracked = cipherString(text, -s);
+        const card = document.createElement('div');
+        card.className = 'crack-card';
+        card.innerHTML = `
+          <div class="crack-card-header">
+            <span>Shift -${s}</span>
+            <span>Click to copy</span>
+          </div>
+          <div class="crack-card-text">${escapeHtml(cracked)}</div>
+        `;
+        card.addEventListener('click', () => {
+          copyToClipboard(cracked);
+        });
+        crackerGrid.appendChild(card);
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast();
+      });
+    }
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    // Event Listeners
+    shiftRange.addEventListener('input', updateConversion);
+    inputText.addEventListener('input', updateConversion);
+
+    btnEncrypt.addEventListener('click', () => {
+      mode = 'encrypt';
+      btnEncrypt.classList.add('active');
+      btnDecrypt.classList.remove('active');
+      inputLabel.textContent = 'Plaintext Input';
+      outputLabel.textContent = 'Ciphertext Output';
+      updateConversion();
+    });
+
+    btnDecrypt.addEventListener('click', () => {
+      mode = 'decrypt';
+      btnDecrypt.classList.add('active');
+      btnEncrypt.classList.remove('active');
+      inputLabel.textContent = 'Ciphertext Input';
+      outputLabel.textContent = 'Plaintext Output';
+      updateConversion();
+    });
+
+    btnRot13.addEventListener('click', () => {
+      shiftRange.value = 13;
+      updateConversion();
+    });
+
+    btnReset.addEventListener('click', () => {
+      shiftRange.value = 0;
+      updateConversion();
+    });
+
+    btnCopyOutput.addEventListener('click', () => {
+      if (outputText.value) {
+        copyToClipboard(outputText.value);
+      }
+    });
+
+    // Initial render
+    updateConversion();
+  </script>
+</body>
+</html>

@@ -44,18 +44,34 @@ function shiftCode(code, key) {
 }
 
 function cipherString(str, key) {
-  return str
-    .split("")
-    .map((char) => String.fromCharCode(shiftCode(char.charCodeAt(0), key)))
-    .join("");
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    result += String.fromCharCode(shiftCode(str.charCodeAt(i), key));
+  }
+  return result;
 }
 
 function cipherBuffer(buffer, key) {
   return buffer.map((byte) => shiftCode(byte, key));
 }
 
+function crackString(str) {
+  const results = [];
+  for (let shift = 1; shift < ALPHABET_LENGTH; shift++) {
+    results.push({
+      shift,
+      text: cipherString(str, -shift),
+    });
+  }
+  return results;
+}
+
 module.exports = {
   CaesarCipherTransform,
   cipherBuffer,
   cipherString,
+  crackString,
+  normalizeShift,
+  shiftCode,
 };
+

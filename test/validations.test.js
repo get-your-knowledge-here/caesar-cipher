@@ -76,6 +76,17 @@ describe("@gykh/caesar-cipher", function () {
         fs.createWriteStream(outputFile)
       );
     });
+    it("should throw error for invalid rot13 / crack string inputs", function () {
+      const { rot13, crack, bruteForce } = require("..");
+      const invalidStrings = ["", null, undefined, 123, makeString(1001)];
+
+      invalidStrings.forEach((val) => {
+        assert.throws(() => rot13(val));
+        assert.throws(() => crack(val));
+        assert.throws(() => bruteForce(val));
+      });
+    });
+
 
     after(() => {
       if (fs.existsSync(outputFile)) {

@@ -1,152 +1,179 @@
-# GYKH - caesar-cipher
+# @gykh/caesar-cipher
 
-> One of the simplest forms of encryption
+> A fast, zero-dependency Caesar shift cipher implementation in Node.js supporting Strings, Buffers, Streams, ROT13, and Cryptanalysis Cracking.
+
+[![npm version](https://img.shields.io/npm/v/@gykh/caesar-cipher.svg?style=flat-square)](https://www.npmjs.com/package/@gykh/caesar-cipher)
+[![npm downloads](https://img.shields.io/npm/dm/@gykh/caesar-cipher.svg?style=flat-square)](https://www.npmjs.com/package/@gykh/caesar-cipher)
+[![CI Tests](https://img.shields.io/github/actions/workflow/status/get-your-knowledge-here/caesar-cipher/test.yml?branch=main&label=tests&style=flat-square)](https://github.com/get-your-knowledge-here/caesar-cipher/actions)
+[![node version](https://img.shields.io/node/v/@gykh/caesar-cipher.svg?style=flat-square)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white)](./index.d.ts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg?style=flat-square)](./package.json)
+
+---
+
+## Features
+
+- 🚀 **Zero Dependencies**: Pure native Node.js implementation.
+- ⚡ **High Performance**: Optimized character code mapping with minimal memory allocation.
+- 🔄 **Multi-Format Support**: Encrypt and decrypt Strings, Buffers, and Node.js Streams.
+- 📦 **Dual ESM & CommonJS**: Full support for both `import` and `require`.
+- 📘 **TypeScript Included**: Full type definitions (`index.d.ts`) with rich autocomplete.
+- 🕵️ **Cracking & ROT13**: Built-in `rot13(str)` and `crack(str)` / `bruteForce(str)` cryptanalysis helpers.
+
+---
 
 ## Install
 
 ```sh
 pnpm add @gykh/caesar-cipher
+# or
+npm install @gykh/caesar-cipher
+# or
+yarn add @gykh/caesar-cipher
 ```
 
-Requires Node.js 18 or newer.
+*Requires Node.js 18 or newer.*
+
+---
 
 ## Usage
 
-Version 3 implements a classic Caesar cipher for ASCII letters. `A-Z` and
-`a-z` shift with wraparound, while punctuation, whitespace, digits, and
-non-letter characters are preserved.
+The Caesar cipher shifts standard ASCII letters (`A-Z` and `a-z`) with wraparound modulo 26, while punctuation, whitespace, digits, and special characters are preserved.
 
-Encrypt and decrypt strings:
+### 1. Strings (ESM & CommonJS)
 
 ```js
-const { encryptString, decryptString } = require("@gykh/caesar-cipher");
+// ESM
+import { encryptString, decryptString, rot13, crack } from "@gykh/caesar-cipher";
 
-const str = "Hello, World! 123";
+// CommonJS
+// const { encryptString, decryptString, rot13, crack } = require("@gykh/caesar-cipher");
 
-const encrypted = encryptString(str, 3);
-console.log(encrypted); // Khoor, Zruog! 123
+const message = "Hello, World! 123";
 
+// Encrypt with a shift of 3
+const encrypted = encryptString(message, 3);
+console.log(encrypted); // "Khoor, Zruog! 123"
+
+// Decrypt back with shift 3
 const decrypted = decryptString(encrypted, 3);
-console.log(str === decrypted); // true
+console.log(decrypted); // "Hello, World! 123"
+
+// ROT13 shortcut (shift of 13)
+const rot13Text = rot13(message);
+console.log(rot13(rot13Text) === message); // true
+
+// Brute-force crack an unknown ciphertext
+const allPossibleShifts = crack(encrypted);
+// Returns an array of 25 possible shifts: [{ shift: 1, text: '...' }, ..., { shift: 3, text: 'Hello, World! 123' }, ...]
 ```
 
-Encrypt and decrypt buffers:
+### 2. Buffers
 
 ```js
-const { encrypt, decrypt } = require("@gykh/caesar-cipher");
-const { readFile } = require("fs/promises");
+import { encrypt, decrypt } from "@gykh/caesar-cipher";
+import { readFile } from "fs/promises";
 
-const buffer = await readFile(inputFile);
+const buffer = await readFile("sample.txt");
 
-const encrypted = encrypt(buffer, 3);
+const encryptedBuffer = encrypt(buffer, 3);
+const decryptedBuffer = decrypt(encryptedBuffer, 3);
 
-const decrypted = decrypt(encrypted, 3);
-console.log(buffer.equals(decrypted)); // true
+console.log(buffer.equals(decryptedBuffer)); // true
 ```
 
-Encrypt and decrypt streams. Use this for large data or files:
+### 3. Streams (For Large Files)
+
+For files or streams exceeding 1000 characters/bytes, use the streaming transform classes:
 
 ```js
-const { EncryptTransform, DecryptTransform } = require("@gykh/caesar-cipher");
-const fs = require("fs");
-const { pipeline } = require("stream/promises");
+import { EncryptTransform, DecryptTransform } from "@gykh/caesar-cipher";
+import fs from "fs";
+import { pipeline } from "stream/promises";
 
+// Encrypt a large file via stream pipeline
 await pipeline(
-  fs.createReadStream(inputFile),
+  fs.createReadStream("large-input.txt"),
   new EncryptTransform(3),
+  fs.createWriteStream("large-encrypted.txt")
+);
+
+// Decrypt stream
+await pipeline(
+  fs.createReadStream("large-encrypted.txt"),
   new DecryptTransform(3),
-  fs.createWriteStream(outputFile)
+  fs.createWriteStream("large-decrypted.txt")
 );
 ```
 
-## API
+---
 
-### caesar-cipher
+## API Reference
 
-### .encryptString(input, key)
+### `encryptString(str, key)`
+Encrypts a plaintext string.
+* **`str`** (`string`, max 1000 chars): Plaintext string to encrypt.
+* **`key`** (`number`, 0–25): Integer shift amount.
+* **Returns**: `string`
 
-#### input
+### `decryptString(str, key)`
+Decrypts a ciphertext string.
+* **`str`** (`string`, max 1000 chars): Ciphertext string to decrypt.
+* **`key`** (`number`, 0–25): Integer shift amount used during encryption.
+* **Returns**: `string`
 
-Type: `string`<br/>
-Required
+### `rot13(str)`
+Convenience utility to encode or decode text using the ROT13 cipher (shift 13).
+* **`str`** (`string`, max 1000 chars): Input string.
+* **Returns**: `string`
 
-#### key
+### `crack(str)` / `bruteForce(str)`
+Generates all 25 possible Caesar cipher shift permutations for cryptanalysis.
+* **`str`** (`string`, max 1000 chars): Encrypted string.
+* **Returns**: `Array<{ shift: number, text: string }>`
 
-Type: `number`<br/>
-Required
+### `encrypt(buffer, key)`
+Encrypts a byte buffer.
+* **`buffer`** (`Buffer`, max 1000 bytes): Input buffer.
+* **`key`** (`number`, 0–25): Integer shift amount.
+* **Returns**: `Buffer`
 
-key should be an integer between 0-25
+### `decrypt(buffer, key)`
+Decrypts an encrypted byte buffer.
+* **`buffer`** (`Buffer`, max 1000 bytes): Input buffer.
+* **`key`** (`number`, 0–25): Integer shift amount.
+* **Returns**: `Buffer`
 
-### .decryptString(input, key)
+### `new EncryptTransform(key)`
+A Node.js `stream.Transform` subclass for encrypting stream chunks.
+* **`key`** (`number`, 0–25): Shift key.
 
-#### input
+### `new DecryptTransform(key)`
+A Node.js `stream.Transform` subclass for decrypting stream chunks.
+* **`key`** (`number`, 0–25): Shift key.
 
-Type: `string`<br/>
-Required
+---
 
-#### key
+## In-Memory Size Boundary Note
 
-Type: `number`<br/>
-Required
+> [!NOTE]
+> `encryptString`, `decryptString`, `encrypt`, `decrypt`, `rot13`, and `crack` enforce an input limit of **1000 characters/bytes** to protect against unbounded memory spikes in non-streaming workloads. For larger data or file transfers, pipe through `EncryptTransform` / `DecryptTransform`.
 
-key should be an integer between 0-25
+---
 
-### .encrypt(input, key)
+## Interactive Demo
 
-#### input
+You can try the interactive web demo directly in your browser by opening [`docs/index.html`](./docs/index.html) or visiting the GitHub Pages deployment.
 
-Type: `Buffer`<br/>
-Required
-
-#### key
-
-Type: `number`<br/>
-Required
-
-key should be an integer between 0-25
-
-### .decrypt(input, key)
-
-#### input
-
-Type: `Buffer`<br/>
-Required
-
-#### key
-
-Type: `number`<br/>
-Required
-
-key should be an integer between 0-25
-
-### new EncryptTransform(key)
-
-#### key
-
-Type: `number`<br/>
-Required
-
-key should be an integer between 0-25
-
-### new DecryptTransform(key)
-
-#### key
-
-Type: `number`<br/>
-Required
-
-key should be an integer between 0-25
-
-## Understand Caesar Cipher
-
-> The Caesar cipher, also known as a shift cipher, is one of the simplest forms of encryption. It is a substitution cipher where each letter in the original message (called the plaintext) is replaced with a letter corresponding to a certain number of letters up or down in the alphabet. [Learn more](https://learncryptography.com/classical-encryption/caesar-cipher)
+---
 
 ## Developer
 
-- [Sylvester Das](https://www.sylvesterdas.com) 
+- **Sylvester Das** — [Website](https://www.sylvesterdas.com) • [Buy Me A Coffee](https://www.buymeacoffee.com/sylvester.das)
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/sylvester.das)
+---
 
 ## License
 
-MIT © 2021 [get-your-knowledge-here](./LICENSE)
+[MIT](./LICENSE) © 2021-2026 [get-your-knowledge-here](https://github.com/get-your-knowledge-here)
