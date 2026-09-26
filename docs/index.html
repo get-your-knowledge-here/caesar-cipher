@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caesar Cipher Playground — @gykh/caesar-cipher</title>
-  <meta name="description" content="Interactive Caesar Cipher playground and cryptanalysis tool for @gykh/caesar-cipher." />
+  <title>Caesar Cipher Decoder &amp; Encoder | Free ROT13 &amp; Brute-Force Tool</title>
+  <meta name="description" content="Free online Caesar cipher decoder and encoder. Encrypt or decrypt with any shift, apply ROT13, and brute-force all 25 shifts to crack unknown messages instantly. 100% in your browser." />
+  <meta name="keywords" content="caesar cipher, caesar cipher decoder, caesar cipher encoder, shift cipher, rot13, rot13 decoder, caesar cipher solver, brute force caesar, cryptography, cipher tool" />
+  <meta name="author" content="Sylvester Das" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://get-your-knowledge-here.github.io/caesar-cipher/" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/logo-512.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo-192.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#0d1117" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Caesar Cipher Playground" />
-  <meta property="og:description" content="Encrypt, decrypt, ROT13 and brute-force crack Caesar ciphers in your browser. Powered by @gykh/caesar-cipher." />
+  <meta property="og:site_name" content="Caesar Cipher Playground" />
+  <meta property="og:title" content="Caesar Cipher Decoder &amp; Encoder: Free Online Tool" />
+  <meta property="og:description" content="Encrypt, decrypt, ROT13 and brute-force crack Caesar ciphers in your browser. Can you crack my secret message?" />
   <meta property="og:url" content="https://get-your-knowledge-here.github.io/caesar-cipher/" />
   <meta property="og:image" content="https://get-your-knowledge-here.github.io/caesar-cipher/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -20,8 +25,65 @@
   <meta property="og:image:alt" content="caesar-cipher: Encrypt, Decrypt, ROT13, Crack" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://get-your-knowledge-here.github.io/caesar-cipher/assets/og-image.jpg" />
-  <meta name="twitter:title" content="Caesar Cipher Playground" />
-  <meta name="twitter:description" content="Encrypt, decrypt, ROT13 and brute-force crack Caesar ciphers in your browser." />
+  <meta name="twitter:title" content="Caesar Cipher Decoder &amp; Encoder: Free Online Tool" />
+  <meta name="twitter:description" content="Encrypt, decrypt, ROT13 and brute-force crack Caesar ciphers in your browser. Can you crack my secret message?" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://get-your-knowledge-here.github.io/caesar-cipher/#app",
+        "name": "Caesar Cipher Decoder & Encoder",
+        "url": "https://get-your-knowledge-here.github.io/caesar-cipher/",
+        "image": "https://get-your-knowledge-here.github.io/caesar-cipher/assets/og-image.jpg",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": ["Caesar cipher encoder", "Caesar cipher decoder", "ROT13", "Brute-force all 25 shifts", "Shareable cipher challenges"],
+        "author": { "@id": "https://get-your-knowledge-here.github.io/caesar-cipher/#author" },
+        "publisher": { "@id": "https://www.minifyn.com/#org" }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "@gykh/caesar-cipher",
+        "description": "Zero-dependency Caesar cipher library for Node.js with Strings, Buffers, Streams, ROT13 and brute-force cracking.",
+        "codeRepository": "https://github.com/get-your-knowledge-here/caesar-cipher",
+        "programmingLanguage": ["JavaScript", "TypeScript"],
+        "runtimePlatform": "Node.js",
+        "license": "https://opensource.org/licenses/MIT",
+        "author": { "@id": "https://get-your-knowledge-here.github.io/caesar-cipher/#author" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://get-your-knowledge-here.github.io/caesar-cipher/#author",
+        "name": "Sylvester Das",
+        "url": "https://www.sylvesterdas.com",
+        "worksFor": { "@id": "https://www.minifyn.com/#org" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.minifyn.com/#org",
+        "name": "MiniFyn",
+        "url": "https://www.minifyn.com",
+        "slogan": "The simplest way to shorten, share, and track your links."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is a Caesar cipher?", "acceptedAnswer": { "@type": "Answer", "text": "A Caesar cipher is a substitution cipher that replaces each letter with the letter a fixed number of positions further along the alphabet. With a shift of 3, A becomes D and HELLO becomes KHOOR. It is named after Julius Caesar, who used it for private letters." } },
+          { "@type": "Question", "name": "How do I decode a Caesar cipher without the key?", "acceptedAnswer": { "@type": "Answer", "text": "There are only 25 possible shifts, so you can try them all. Paste the message into this tool and the Cryptanalysis Cracker lists every shift at once; the readable line is the answer." } },
+          { "@type": "Question", "name": "What is ROT13?", "acceptedAnswer": { "@type": "Answer", "text": "ROT13 is a Caesar cipher with a shift of 13. Because the alphabet has 26 letters, applying ROT13 twice returns the original text, so the same operation both encodes and decodes." } },
+          { "@type": "Question", "name": "Is the Caesar cipher secure?", "acceptedAnswer": { "@type": "Answer", "text": "No. It can be broken in seconds by trying all 25 shifts. Use it for puzzles, games, teaching and light obfuscation, never for protecting real secrets." } },
+          { "@type": "Question", "name": "Is my text sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. All encryption, decryption and cracking runs locally in your browser." } },
+          { "@type": "Question", "name": "Can I use this Caesar cipher in my own code?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Install the free, MIT-licensed npm package @gykh/caesar-cipher. It supports strings, buffers and streams, plus ROT13 and brute-force cracking, with TypeScript types." } }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -86,16 +148,9 @@
     }
 
     .logo-icon {
-      background: linear-gradient(135deg, #1f6feb, #58a6ff);
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: #fff;
+      width: 40px;
+      height: 40px;
+      display: block;
     }
 
     .logo-title {
@@ -416,26 +471,191 @@
       color: var(--accent);
       text-decoration: none;
     }
+
+    footer p + p {
+      margin-top: 0.4rem;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 760px;
+    }
+
+    .intro strong {
+      color: var(--text);
+    }
+
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .share-row a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .share-row a:hover {
+      text-decoration: underline;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0d1117;
+    }
+
+    .btn.primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .promo {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(88, 166, 255, 0.08));
+      border: 1px solid rgba(124, 58, 237, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .promo-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: var(--transition);
+    }
+
+    .promo-card:hover {
+      border-color: #a78bfa;
+      transform: translateY(-1px);
+    }
+
+    .promo-card strong {
+      font-size: 0.95rem;
+    }
+
+    .promo-card span {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .promo-card em {
+      font-style: normal;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a78bfa;
+      margin-top: auto;
+    }
+
+    .content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem 2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .content h2 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .content p + p,
+    .content ol {
+      margin-top: 0.5rem;
+    }
+
+    .content ol {
+      padding-left: 1.2rem;
+    }
+
+    .content code,
+    .content pre {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    .content pre {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .content a {
+      color: var(--accent);
+    }
+
+    .faq {
+      grid-column: 1 / -1;
+    }
+
+    .faq details {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 0;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .faq details p {
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="header-inner">
       <div class="logo-group">
-        <div class="logo-icon">C</div>
+        <img class="logo-icon" src="assets/logo-96.png" width="40" height="40" alt="Caesar Cipher logo" />
         <div>
-          <h1 class="logo-title">Caesar Cipher Playground</h1>
-          <p class="logo-subtitle">Powered by @gykh/caesar-cipher</p>
+          <h1 class="logo-title">Caesar Cipher Decoder &amp; Encoder</h1>
+          <p class="logo-subtitle">Free &amp; private · Powered by @gykh/caesar-cipher</p>
         </div>
       </div>
       <nav class="nav-links">
         <a class="nav-link" href="https://github.com/get-your-knowledge-here/caesar-cipher" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="nav-link" href="https://www.npmjs.com/package/@gykh/caesar-cipher" target="_blank" rel="noopener">npm ↗</a>
+        <a class="nav-link" href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=nav" target="_blank" rel="noopener">MiniFyn ↗</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <p class="intro">Encrypt and decrypt text with a <strong>Caesar shift cipher</strong>, apply <strong>ROT13</strong>, or paste a secret message and <strong>crack it instantly</strong> by trying all 25 shifts. Everything runs in your browser; nothing is uploaded.</p>
+
     <div class="playground-card">
       <div class="controls-grid">
         <div class="control-group">
@@ -481,6 +701,12 @@
           <textarea id="outputText" readonly placeholder="Output will appear here..."></textarea>
         </div>
       </div>
+
+      <div class="share-row">
+        <button class="btn primary" id="btnShare">🔗 Share as a challenge</button>
+        <span>Sends the encrypted text only; your friend has to crack it.
+          Want a short link and to see who clicked? <a id="minifynShare" href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=share" target="_blank" rel="noopener">Shorten it with MiniFyn →</a></span>
+      </div>
     </div>
 
     <div class="cracker-section">
@@ -493,13 +719,92 @@
         <!-- Permutation cards populated via JS -->
       </div>
     </div>
+
+    <section class="promo" aria-labelledby="promoTitle">
+      <div>
+        <h2 class="section-title" id="promoTitle">Free privacy &amp; sharing tools from MiniFyn</h2>
+        <p class="section-desc">This playground is made by the team behind <a href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-intro" target="_blank" rel="noopener" style="color:#a78bfa">MiniFyn</a>, the simplest way to shorten, share, and track your links.</p>
+      </div>
+      <div class="promo-grid">
+        <a class="promo-card" href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-minifyn" target="_blank" rel="noopener">
+          <strong>🔗 MiniFyn</strong>
+          <span>Lightning-fast edge link shortening, bio-links, QR code generator and link analytics with built-in threat protection.</span>
+          <em>Shorten a link free →</em>
+        </a>
+        <a class="promo-card" href="https://www.minifyn.com/scamguard?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-scamguard" target="_blank" rel="noopener">
+          <strong>🛡️ ScamGuard</strong>
+          <span>Decoded a suspicious link? Inspect links, QR codes and redirect chains for phishing before you open them.</span>
+          <em>Check a link →</em>
+        </a>
+        <a class="promo-card" href="https://www.minifyn.com/censorfyn?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-censorfyn" target="_blank" rel="noopener">
+          <strong>🙈 CensorFyn</strong>
+          <span>Auto-detect and irreversibly redact faces, passports, credit cards, PII text and QR codes, 100% offline.</span>
+          <em>Redact media →</em>
+        </a>
+        <a class="promo-card" href="https://www.minifyn.com/clipfyn?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-clipfyn" target="_blank" rel="noopener">
+          <strong>🎬 ClipFyn</strong>
+          <span>Inspect, crop and fit videos on-device for compatible sharing, with no quality loss or uploads.</span>
+          <em>Prep a video →</em>
+        </a>
+      </div>
+      <p class="section-desc">Get them free:
+        <a href="https://chromewebstore.google.com/detail/scamguard-link-checker/cendbppkhplamddjfnbhgbejnpmfmlbi?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=promo-stores" target="_blank" rel="noopener" style="color:#a78bfa">ScamGuard for Chrome</a> ·
+        <a href="https://play.google.com/store/apps/details?id=com.minifyn.linkguard&amp;referrer=utm_source%3Dcaesar-cipher%26utm_medium%3Dreferral%26utm_campaign%3Dplayground%26utm_content%3Dpromo-stores" target="_blank" rel="noopener" style="color:#a78bfa">ScamGuard for Android</a> ·
+        <a href="https://play.google.com/store/apps/details?id=com.minifyn.censorfyn&amp;referrer=utm_source%3Dcaesar-cipher%26utm_medium%3Dreferral%26utm_campaign%3Dplayground%26utm_content%3Dpromo-stores" target="_blank" rel="noopener" style="color:#a78bfa">CensorFyn for Android</a> ·
+        <a href="https://play.google.com/store/apps/details?id=com.minifyn.clipfyn&amp;referrer=utm_source%3Dcaesar-cipher%26utm_medium%3Dreferral%26utm_campaign%3Dplayground%26utm_content%3Dpromo-stores" target="_blank" rel="noopener" style="color:#a78bfa">ClipFyn for Android</a>
+      </p>
+    </section>
+
+    <section class="content">
+      <div>
+        <h2>What is a Caesar cipher?</h2>
+        <p>A Caesar cipher is one of the oldest encryption techniques. Each letter is replaced by the letter a fixed number of positions further along the alphabet, wrapping from Z back to A. With a shift of 3, <code>A → D</code> and <code>HELLO → KHOOR</code>.</p>
+        <p>It is named after Julius Caesar, who used a shift of 3 to protect his private letters. Numbers, spaces and punctuation stay unchanged.</p>
+      </div>
+      <div>
+        <h2>How to decode a Caesar cipher</h2>
+        <ol>
+          <li><strong>Know the shift?</strong> Choose <em>Decrypt</em>, set the shift, and paste the message.</li>
+          <li><strong>No key?</strong> Paste it anyway. The Cryptanalysis Cracker shows all 25 shifts; pick the line that reads as normal text.</li>
+          <li><strong>ROT13?</strong> Press <em>ROT13</em>. The same shift both encodes and decodes.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Use it in your code</h2>
+        <p>Everything on this page is available as a free, MIT-licensed, zero-dependency npm package with TypeScript types.</p>
+        <pre>npm install @gykh/caesar-cipher
+
+import { encryptString, crack } from "@gykh/caesar-cipher";
+encryptString("Hello", 3); // "Khoor"</pre>
+        <p><a href="https://github.com/get-your-knowledge-here/caesar-cipher" target="_blank" rel="noopener">Star it on GitHub</a> · <a href="https://www.npmjs.com/package/@gykh/caesar-cipher" target="_blank" rel="noopener">View on npm</a></p>
+      </div>
+      <div class="faq">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>What is ROT13?</summary>
+          <p>ROT13 is a Caesar cipher with a shift of 13. The alphabet has 26 letters, so applying ROT13 twice returns the original text. It is popular for hiding spoilers and puzzle answers.</p>
+        </details>
+        <details>
+          <summary>Is the Caesar cipher secure?</summary>
+          <p>No. With only 25 possible keys it can be broken in seconds, as the cracker above shows. Use it for puzzles, escape rooms, geocaching, teaching and games, never for real secrets.</p>
+        </details>
+        <details>
+          <summary>Is my text sent to a server?</summary>
+          <p>No. All encryption, decryption and cracking runs locally in your browser. Challenge links carry only the encrypted text, inside the link itself.</p>
+        </details>
+        <details>
+          <summary>How do I share a secret message?</summary>
+          <p>Encrypt your text, press <em>Share as a challenge</em>, and send the link. Your friend sees only the scrambled text and has to crack it. To get a short, tidy link and see how many people opened it, <a href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=faq" target="_blank" rel="noopener">shorten it with MiniFyn</a>.</p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <div class="toast" id="toast">Copied to clipboard!</div>
 
   <footer>
     <p>MIT License © 2021-2026 <a href="https://github.com/get-your-knowledge-here/caesar-cipher" target="_blank" rel="noopener">get-your-knowledge-here</a> • Created by <a href="https://www.sylvesterdas.com" target="_blank" rel="noopener">Sylvester Das</a></p>
-    <p>More from the author: <a href="https://www.minifyn.com" target="_blank" rel="noopener">MiniFyn</a>, the simplest way to shorten, share, and track your links.</p>
+    <p>A free tool by <a href="https://www.minifyn.com/?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=footer" target="_blank" rel="noopener">MiniFyn</a>: the simplest way to shorten, share, and track your links · <a href="https://www.minifyn.com/scamguard?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=footer" target="_blank" rel="noopener">ScamGuard</a> · <a href="https://www.minifyn.com/censorfyn?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=footer" target="_blank" rel="noopener">CensorFyn</a> · <a href="https://www.minifyn.com/clipfyn?utm_source=caesar-cipher&amp;utm_medium=referral&amp;utm_campaign=playground&amp;utm_content=footer" target="_blank" rel="noopener">ClipFyn</a></p>
   </footer>
 
   <script>
@@ -606,11 +911,12 @@
       });
     }
 
-    function showToast() {
+    function showToast(message = 'Copied to clipboard!') {
+      toast.textContent = message;
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 1800);
+      }, message.length > 30 ? 3200 : 1800);
     }
 
     // Event Listeners
@@ -651,8 +957,35 @@
       }
     });
 
+    // Challenge links: #c=<ciphertext> opens in decrypt mode with shift 0,
+    // so the recipient has to find the key with the cracker.
+    const btnShare = document.getElementById('btnShare');
+    btnShare.addEventListener('click', async () => {
+      const cipher = mode === 'encrypt' ? outputText.value : inputText.value;
+      if (!cipher.trim()) return;
+      const url = `${location.origin}${location.pathname}#c=${encodeURIComponent(cipher)}`;
+      const shareData = { title: 'Can you crack my Caesar cipher?', text: 'Can you crack this secret message?', url };
+      if (navigator.share && matchMedia('(pointer: coarse)').matches) {
+        try { await navigator.share(shareData); return; } catch (e) { if (e.name === 'AbortError') return; }
+      }
+      navigator.clipboard.writeText(url).then(() => showToast('Challenge link copied! Shorten it with MiniFyn for click stats.'));
+    });
+
+    function loadChallenge() {
+      const match = location.hash.match(/^#c=(.+)$/);
+      if (!match) return;
+      let cipher;
+      try { cipher = decodeURIComponent(match[1]).slice(0, 1000); } catch (e) { return; }
+      btnDecrypt.click();
+      shiftRange.value = 0;
+      inputText.value = cipher;
+      updateConversion();
+      document.querySelector('.cracker-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
     // Initial render
     updateConversion();
+    loadChallenge();
   </script>
 </body>
 </html>
