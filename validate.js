@@ -1,3 +1,5 @@
+const MAX_INPUT_LENGTH = 1000;
+
 /**
  * Check for valid key
  *
@@ -5,16 +7,46 @@
  */
 function ensureValidKey(key) {
   if (key === undefined || key === null) {
-    throw new Error("Key is required");
+    throw new TypeError("Key is required");
   }
 
   if (typeof key !== "number" || !Number.isInteger(key)) {
-    throw new Error("Key should be an integer");
+    throw new TypeError("Key should be an integer");
   }
 
   if (key < 0 || key > 25) {
-    throw new Error("Key should be within the range of 0 - 25");
+    throw new RangeError("Key should be within the range of 0 - 25");
   }
+}
+
+/**
+ * Check that input does not exceed the in-memory size limit
+ *
+ * @param {number} length Input length in characters or bytes
+ */
+function ensureWithinLimit(length) {
+  if (length > MAX_INPUT_LENGTH) {
+    throw new RangeError(
+      "Input too large, use EncryptTransform / DecryptTransform instead"
+    );
+  }
+}
+
+/**
+ * Validation for string input without key (rot13, crack, bruteForce)
+ *
+ * @param {String} str String input value
+ */
+function ensureValidStringOnly(str) {
+  if (!str) {
+    throw new TypeError("Str is required");
+  }
+
+  if (typeof str !== "string") {
+    throw new TypeError("Str is invalid");
+  }
+
+  ensureWithinLimit(str.length);
 }
 
 /**
@@ -24,20 +56,7 @@ function ensureValidKey(key) {
  * @param {number} key Shift key
  */
 function ensureValidForString(str, key) {
-  if (!str) {
-    throw new Error("Str is required");
-  }
-
-  if (typeof str !== "string" || str.length === 0) {
-    throw new Error("Str is invalid");
-  }
-
-  if (str.length > 1000) {
-    throw new Error(
-      "Input too large, use EncryptTransform / DecryptTransform instead"
-    );
-  }
-
+  ensureValidStringOnly(str);
   ensureValidKey(key);
 }
 
@@ -49,47 +68,21 @@ function ensureValidForString(str, key) {
  */
 function ensureValidForBuffer(buffer, key) {
   if (!buffer) {
-    throw new Error("Buffer is required");
+    throw new TypeError("Buffer is required");
   }
 
   if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
-    throw new Error("Buffer is invalid");
+    throw new TypeError("Buffer is invalid");
   }
 
-  if (buffer.length > 1000) {
-    throw new Error(
-      "Input too large, use EncryptTransform / DecryptTransform instead"
-    );
-  }
-
+  ensureWithinLimit(buffer.length);
   ensureValidKey(key);
 }
 
-/**
- * Validation for string input without key (rot13, crack, bruteForce)
- *
- * @param {String} str String input value
- */
-function ensureValidStringOnly(str) {
-  if (!str) {
-    throw new Error("Str is required");
-  }
-
-  if (typeof str !== "string" || str.length === 0) {
-    throw new Error("Str is invalid");
-  }
-
-  if (str.length > 1000) {
-    throw new Error(
-      "Input too large, use EncryptTransform / DecryptTransform instead"
-    );
-  }
-}
-
 module.exports = {
+  MAX_INPUT_LENGTH,
   ensureValidKey,
   ensureValidForString,
   ensureValidForBuffer,
   ensureValidStringOnly,
 };
-

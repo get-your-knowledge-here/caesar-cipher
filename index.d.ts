@@ -18,7 +18,7 @@ export interface CrackResult {
  * @param str The string to encrypt (maximum 1000 characters).
  * @param key Shift key as an integer between 0 and 25.
  * @returns The encrypted string.
- * @throws {Error} If `str` is empty/invalid, exceeds 1000 characters, or `key` is not an integer in 0-25.
+ * @throws {TypeError | RangeError} If `str` is empty/invalid, exceeds 1000 characters, or `key` is not an integer in 0-25.
  */
 export function encryptString(str: string, key: number): string;
 
@@ -28,7 +28,7 @@ export function encryptString(str: string, key: number): string;
  * @param str The string to decrypt (maximum 1000 characters).
  * @param key Shift key as an integer between 0 and 25.
  * @returns The decrypted string.
- * @throws {Error} If `str` is empty/invalid, exceeds 1000 characters, or `key` is not an integer in 0-25.
+ * @throws {TypeError | RangeError} If `str` is empty/invalid, exceeds 1000 characters, or `key` is not an integer in 0-25.
  */
 export function decryptString(str: string, key: number): string;
 
@@ -37,7 +37,7 @@ export function decryptString(str: string, key: number): string;
  *
  * @param str The string to encode/decode (maximum 1000 characters).
  * @returns The ROT13-transformed string.
- * @throws {Error} If `str` is empty/invalid or exceeds 1000 characters.
+ * @throws {TypeError | RangeError} If `str` is empty/invalid or exceeds 1000 characters.
  */
 export function rot13(str: string): string;
 
@@ -46,7 +46,7 @@ export function rot13(str: string): string;
  *
  * @param str The ciphertext to brute-force crack (maximum 1000 characters).
  * @returns An array of 25 objects with `shift` and decrypted `text`.
- * @throws {Error} If `str` is empty/invalid or exceeds 1000 characters.
+ * @throws {TypeError | RangeError} If `str` is empty/invalid or exceeds 1000 characters.
  */
 export function crack(str: string): CrackResult[];
 
@@ -64,7 +64,7 @@ export const bruteForce: (str: string) => CrackResult[];
  * @param buffer The Buffer to encrypt (maximum 1000 bytes).
  * @param key Shift key as an integer between 0 and 25.
  * @returns The encrypted Buffer.
- * @throws {Error} If `buffer` is empty/invalid, exceeds 1000 bytes, or `key` is not an integer in 0-25.
+ * @throws {TypeError | RangeError} If `buffer` is empty/invalid, exceeds 1000 bytes, or `key` is not an integer in 0-25.
  */
 export function encrypt(buffer: Buffer, key: number): Buffer;
 
@@ -74,7 +74,7 @@ export function encrypt(buffer: Buffer, key: number): Buffer;
  * @param buffer The Buffer to decrypt (maximum 1000 bytes).
  * @param key Shift key as an integer between 0 and 25.
  * @returns The decrypted Buffer.
- * @throws {Error} If `buffer` is empty/invalid, exceeds 1000 bytes, or `key` is not an integer in 0-25.
+ * @throws {TypeError | RangeError} If `buffer` is empty/invalid, exceeds 1000 bytes, or `key` is not an integer in 0-25.
  */
 export function decrypt(buffer: Buffer, key: number): Buffer;
 
