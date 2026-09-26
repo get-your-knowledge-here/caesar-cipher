@@ -9,6 +9,23 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white)](./index.d.ts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg?style=flat-square)](./package.json)
+[![Live Demo](https://img.shields.io/badge/demo-live-58a6ff.svg?style=flat-square)](https://get-your-knowledge-here.github.io/caesar-cipher/)
+[![MiniFyn](https://img.shields.io/badge/by-MiniFyn-7c3aed.svg?style=flat-square)](https://www.minifyn.com)
+
+**▶ [Try it live in your browser](https://get-your-knowledge-here.github.io/caesar-cipher/)**: encrypt, decrypt, ROT13 and brute-force crack with no install.
+
+---
+
+## Contents
+
+- [Features](#features)
+- [Install](#install)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Interactive Demo](#interactive-demo)
+- [More from the Author: MiniFyn](#more-from-the-author-minifyn)
+- [Developer](#developer)
+- [License](#license)
 
 ---
 
@@ -164,14 +181,29 @@ A Node.js `stream.Transform` subclass for decrypting stream chunks.
 
 ## Interactive Demo
 
-You can try the interactive web demo directly in your browser by opening [`docs/index.html`](./docs/index.html).
+**Live playground:** [https://get-your-knowledge-here.github.io/caesar-cipher/](https://get-your-knowledge-here.github.io/caesar-cipher/)
 
+Encrypt and decrypt with any shift, apply ROT13, and brute-force all 25 shifts to crack unknown ciphertext, entirely in your browser. To run it offline, open [`docs/index.html`](./docs/index.html) locally.
+
+---
+
+## More from the Author: MiniFyn
+
+If you find this library useful, check out **[MiniFyn](https://www.minifyn.com)**, *the simplest way to shorten, share, and track your links*, and its family of privacy-focused tools:
+
+| Product | What it does | Link |
+| --- | --- | --- |
+| 🔗 **MiniFyn** | Shorten, share and track links with the short `mnfy.in` domain | [minifyn.com](https://www.minifyn.com) |
+| 🧩 **MiniFyn API** | Add link shortening and analytics to your own apps | [API docs](https://www.minifyn.com/docs/api) |
+| 🛡️ **ScamGuard** | Check links and QR codes for scams, phishing and malware | [minifyn.com/scamguard](https://www.minifyn.com/scamguard) · [Chrome extension](https://chromewebstore.google.com/detail/scamguard-link-checker/cendbppkhplamddjfnbhgbejnpmfmlbi) |
+| 🙈 **CensorFyn** | Offline, on-device AI redaction for photos and videos | [minifyn.com/censorfyn](https://www.minifyn.com/censorfyn) |
+| 🎬 **ClipFyn** | Trim and prepare videos for sharing | [minifyn.com/clipfyn](https://www.minifyn.com/clipfyn) |
 
 ---
 
 ## Developer
 
-- **Sylvester Das** — [Website](https://www.sylvesterdas.com) • [Buy Me A Coffee](https://www.buymeacoffee.com/sylvester.das)
+- **Sylvester Das** — [Website](https://www.sylvesterdas.com) • [MiniFyn](https://www.minifyn.com) • [Buy Me A Coffee](https://www.buymeacoffee.com/sylvester.das)
 
 ---
 

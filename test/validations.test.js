@@ -86,7 +86,15 @@ describe("@gykh/caesar-cipher", function () {
         assert.throws(() => bruteForce(val));
       });
     });
-
+    it("should throw TypeError for bad types and RangeError for out-of-range input", function () {
+      assert.throws(() => encryptString(123, 3), TypeError);
+      assert.throws(() => encryptString("abc", "3"), TypeError);
+      assert.throws(() => encryptString("abc", 26), RangeError);
+      assert.throws(() => encryptString(makeString(1001), 3), RangeError);
+      assert.throws(() => encrypt("abc", 3), TypeError);
+      assert.throws(() => encrypt(Buffer.alloc(1001, 97), 3), RangeError);
+      assert.throws(() => new EncryptTransform(-1), RangeError);
+    });
 
     after(() => {
       if (fs.existsSync(outputFile)) {

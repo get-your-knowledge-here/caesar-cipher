@@ -1,14 +1,17 @@
 {
   "name": "@gykh/caesar-cipher",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "⚡ Fast, zero-dependency Caesar cipher in Node.js supporting Strings, Buffers, Streams, ROT13, & Cracking.",
   "main": "index.js",
   "types": "./index.d.ts",
   "exports": {
-    "types": "./index.d.ts",
-    "import": "./index.mjs",
-    "require": "./index.js",
-    "default": "./index.js"
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "cipher.js",
@@ -32,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/get-your-knowledge-here/caesar-cipher.git"
+    "url": "git+https://github.com/get-your-knowledge-here/caesar-cipher.git"
   },
   "keywords": [
     "caesar",
@@ -47,16 +50,19 @@
     "decryption",
     "streams",
     "typescript",
-    "zero-dependencies"
+    "zero-dependencies",
+    "playground",
+    "rot13-decoder"
   ],
   "author": {
     "name": "Sylvester Das",
     "email": "sylvester.das@gmail.com",
     "url": "https://www.sylvesterdas.com"
   },
+  "funding": "https://www.buymeacoffee.com/sylvester.das",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/get-your-knowledge-here/caesar-cipher/issues"
   },
-  "homepage": "https://www.npmjs.com/package/@gykh/caesar-cipher"
+  "homepage": "https://get-your-knowledge-here.github.io/caesar-cipher/"
 }
