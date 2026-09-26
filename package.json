@@ -1,6 +1,6 @@
 {
   "name": "@gykh/caesar-cipher",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "⚡ Fast, zero-dependency Caesar cipher in Node.js supporting Strings, Buffers, Streams, ROT13, & Cracking.",
   "main": "index.js",
   "types": "./index.d.ts",
