@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://get-your-knowledge-here.github.io/caesar-cipher/"><img src="https://raw.githubusercontent.com/get-your-knowledge-here/caesar-cipher/main/docs/assets/banner.jpg" alt="caesar-cipher: Encrypt · Decrypt · ROT13 · Crack" width="100%" /></a>
+</p>
+
 # @gykh/caesar-cipher
 
 > A fast, zero-dependency Caesar shift cipher implementation in Node.js supporting Strings, Buffers, Streams, ROT13, and Cryptanalysis Cracking.
