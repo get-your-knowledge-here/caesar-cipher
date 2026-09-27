@@ -18,6 +18,8 @@
 
 **▶ [Try it live in your browser](https://get-your-knowledge-here.github.io/caesar-cipher/)**: encrypt, decrypt, ROT13 and brute-force crack with no install.
 
+**▶ [Watch the 49-second demo](https://youtube.com/shorts/o2WY9Hrx7wk)** on YouTube. More short package videos on [@qckx](https://www.youtube.com/@qckx).
+
 ---
 
 ## Contents
