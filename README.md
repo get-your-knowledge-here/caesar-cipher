@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://get-your-knowledge-here.github.io/caesar-cipher/"><img src="https://raw.githubusercontent.com/get-your-knowledge-here/caesar-cipher/main/docs/assets/banner.jpg" alt="caesar-cipher: Encrypt · Decrypt · ROT13 · Crack" width="100%" /></a>
+  <a href="https://gykh.sylvesterdas.com/caesar-cipher/"><img src="https://raw.githubusercontent.com/get-your-knowledge-here/caesar-cipher/main/docs/assets/banner.jpg" alt="caesar-cipher: Encrypt · Decrypt · ROT13 · Crack" width="100%" /></a>
 </p>
 
 # @gykh/caesar-cipher
@@ -13,10 +13,10 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white)](./index.d.ts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg?style=flat-square)](./package.json)
-[![Live Demo](https://img.shields.io/badge/demo-live-58a6ff.svg?style=flat-square)](https://get-your-knowledge-here.github.io/caesar-cipher/)
+[![Live Demo](https://img.shields.io/badge/demo-live-58a6ff.svg?style=flat-square)](https://gykh.sylvesterdas.com/caesar-cipher/)
 [![MiniFyn](https://img.shields.io/badge/by-MiniFyn-7c3aed.svg?style=flat-square)](https://www.minifyn.com)
 
-**▶ [Try it live in your browser](https://get-your-knowledge-here.github.io/caesar-cipher/)**: encrypt, decrypt, ROT13 and brute-force crack with no install.
+**▶ [Try it live in your browser](https://gykh.sylvesterdas.com/caesar-cipher/)**: encrypt, decrypt, ROT13 and brute-force crack with no install.
 
 **▶ [Watch the 49-second demo](https://youtube.com/shorts/o2WY9Hrx7wk)** on YouTube. More short package videos on [@qckx](https://www.youtube.com/@qckx). All packages: [@gykh on npm](https://www.npmjs.com/org/gykh).
 
@@ -187,7 +187,7 @@ A Node.js `stream.Transform` subclass for decrypting stream chunks.
 
 ## Interactive Demo
 
-**Live playground:** [https://get-your-knowledge-here.github.io/caesar-cipher/](https://get-your-knowledge-here.github.io/caesar-cipher/)
+**Live playground:** [https://gykh.sylvesterdas.com/caesar-cipher/](https://gykh.sylvesterdas.com/caesar-cipher/)
 
 Encrypt and decrypt with any shift, apply ROT13, and brute-force all 25 shifts to crack unknown ciphertext, entirely in your browser. To run it offline, open [`docs/index.html`](./docs/index.html) locally.
 
