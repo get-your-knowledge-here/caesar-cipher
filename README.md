@@ -18,7 +18,7 @@
 
 **▶ [Try it live in your browser](https://gykh.sylvesterdas.com/caesar-cipher/)**: encrypt, decrypt, ROT13 and brute-force crack with no install.
 
-**▶ [Watch the 49-second demo](https://youtube.com/shorts/o2WY9Hrx7wk)** on YouTube. More short package videos on [@gykhdev](https://www.youtube.com/@gykhdev). All packages: [@gykh on npm](https://www.npmjs.com/org/gykh).
+**▶ [Watch the 49-second demo](https://youtube.com/shorts/o2WY9Hrx7wk)** on YouTube. More short package videos on [@gykhdev](https://www.youtube.com/@gykhdev). Sibling packages: [@gykh/morse](https://github.com/get-your-knowledge-here/morse), [@gykh/enigma](https://github.com/get-your-knowledge-here/enigma), [@gykh/vigenere-cipher](https://github.com/get-your-knowledge-here/vigenere-cipher), [@gykh/cat-facts](https://github.com/get-your-knowledge-here/cat-facts). All packages: [@gykh on npm](https://www.npmjs.com/org/gykh).
 
 ---
 
